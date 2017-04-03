@@ -12,7 +12,7 @@ cache:
 # S: Build Lifecycle
 before_install:
   - npm install -g hexo-cli # 安装 hexo
-#  - git clone -b mod https://github.com/zhukite/pseudotheme.git themes/next
+  - git clone -b mod https://github.com/zhukite/pseudotheme.git themes/next
 
 install:
   - npm install
