@@ -13,6 +13,7 @@ cache:
 before_install:
   - npm install -g hexo-cli # 安装 hexo
 #  - git clone -b mod https://github.com/zhukite/pseudotheme.git themes/next
+  - git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 install:
   - npm install
