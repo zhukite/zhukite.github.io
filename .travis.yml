@@ -1,0 +1,37 @@
+language: node_js
+node_js: stable
+
+# assign build branches
+branches:
+  only:
+    - source
+# cache this directory
+cache:
+  directories:
+    - node_modules
+# S: Build Lifecycle
+before_install:
+  - npm install -g hexo-cli # 安装 hexo
+#  - git clone -b mod https://github.com/zhukite/pseudotheme.git themes/next
+
+install:
+  - npm install
+
+script:
+  - hexo generate
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "zhukite"
+  - git config user.email "zhukite@hotmail.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+# E: Build LifeCycle
+
+
+env:
+ global:
+   - GH_REF: github.com/zhukite/zhukite.github.io.git
+   - secure: "PbwpBUgocVgIWzaavsqNViqOwknQDFlDQ3XSGYNM6XQ0VVaTBDLdMvVxRoOAX98UAZrRo8It0z//LMcAFo/T/BYJV8ZbAc9MA6zaSn44RGmomqLrwNJ7aTzFs39LNaoSK2MFXSDP8E6q1mXzezxm0OABEo4YbOaRTsMgSXiGX6HzsDqK+klEzLX0TOaR8iUzq3pTXPvxpJwODAhLlqThA5rWWvAp3L28wTfcm8k99vgPc8BXfbhFJMIK7y+hZCyPigwKHc1oqk22o2deQOnSR7TpiDMghqpNbJnBe1HC7CZ2s7hr/SL9t1qngH/1llwXXPuuvTT8FAnkLYOaSNkA3OUNmRqIs93BO4iSyOqyBO/KgBFcnNhZiPoedGWrSGInOszwVv3UGAOyZiopoypqffF9naeS64YhzJpfJgaKS4pzb5aUUidzZJv/zNAlMSfSFnJBWcUwB6PLgObn2WIOETn2Qw77DkDauujWec6BwhZe2fgYaah3jsyXD9ndbZy2iVZiaqHIeGip6ztjT1qCydshPBQ9oBigy+PfUg6v4Wjrs/FNgVdT0VzhpPs5VvUIYMbA7G+lL7oYjbLecOjs15nghA5hSfedSPjk+APqO5Ovw9JaZSR9gfcwqxIWwwuNGejLoLI5xx+WwhViAFX2vAXRx4ugooD5lxO39kbZI+0="
