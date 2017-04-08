@@ -25,7 +25,7 @@ Travis CI使用一对Key Pair中的Public Key加密你提供的github Token得�
  
 4、加密 Personal Access Token
 
-    travis encrypt -r <GitHub用户名>/<GitHub仓库名(记得不带.git的) > GH_TOKEN=XXX
+    travis encrypt -r <GitHub用户名>/<GitHub仓库名>  GH_TOKEN=XXX
  
 5、将这条命令输出的结果就是secure token，将它复制到 .travis.yml 文件下：
 
