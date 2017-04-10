@@ -1,7 +1,7 @@
 ---
 title: How to Config Travis-CI
 tags: [IT]
-date: 2017-04-08
+date: 2017-04-09
 ---
 
 Github 提供的Personal Access Token与帐号密码以及SSH Keys同样具有Github写入能力，因此只要使用Travis CI提供的加密工具来加密这个Token即可。
