@@ -10,7 +10,6 @@ tags: [travel,新疆,西藏,云南]
 ## 去过并记忆深刻的地方：
 ### <a href="http://zhukite.github.io/posts/dian-xi-bei-huan-xian.html" target="_blank">滇西北环线（怒江，澜沧江，金沙江，碧罗雪山，梅里雪山）</a>和<a href="http://zhukite.github.io/posts/zhong-yue-yan-bian-yan-hai.html" target="_blank">广西沿边沿海环线，主要中越沿边</a>，2012年除了广西中越之外，还有重头戏<a href="http://zhukite.github.io/posts/bing-cha-cha-gong-lu.html" target="_blank">丙察察线（丙中洛-察瓦龙-察隅）（中缅印）</a>以及后续的西藏之旅。2013年重头戏放在新疆，<a href="http://zhukite.github.io/posts/tian-shan-du-ku-gong-lu.html" target="_blank">天山独库公路</a>，然后就是南疆天山南线的库车，阿克苏，喀什走下来再上<a href="http://zhukite.github.io/posts/pa-mi-er-gao-yuan.html" target="_blank">帕米尔高原，中巴友谊公路＆塔莎古道</a>，到了叶城后再次输给时间，毕竟有更重要的事情得回来做，不能把时间耗费在漫长的新藏线上。
 
-
 ## 已经没兴趣不想去的地方：
 ### 原本打算2014新年去元阳普洱版纳环线（中缅老越四国交界），但是得忙别的事情就不了了之。2013年看了几个老外和中国骑友去过，现在也不考虑此西南边陲。独龙江谈论的多，去的人少，不适合骑车。至于大热门的徒步墨脱线更多是为了证明某种勇气而泛滥，所以我对此完全失去兴趣。
  -  对那位从独龙江穿越到察隅之后穿越非法的麦克马洪线以南走到墨脱的“野人”只能表达只可佩服不可复制的敬意！
