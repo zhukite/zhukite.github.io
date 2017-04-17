@@ -18,7 +18,6 @@ url: https://zhukite.github.io
 root: /
 permalink: :title/
 permalink_defaults:
-  lang: zh-cn
 
 # Directory
 source_dir: source
