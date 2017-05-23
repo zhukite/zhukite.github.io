@@ -12,12 +12,12 @@ date: 2017-05-22
 
     awk '{a=a" "$1}/   rn/{print a;a=""}' inputfile > outputfile
     
-a是字符串变量，在读多行文件，把每一行的第一个字段内容在a后面拼接到a(顺序输出)，当行出现 rn 标识的时候，输出a; a=""则是把a赋值为空。如此循环把文件内容读完。
+a是字符串变量，在读多行文件，把每一行的第一个字段内容在a后面拼接到a(顺序输出)，当行出现 rn 标识的时候，输出a， 然后 a=""则是把a赋值为空。如此循环把文件内容读完。
 
-    awk '{a=a?$1" "a:$1}/^   Ccy/{print s;s=""}' inputfile > outputfile
-    awk '{if(a){a=$1" "a} else{a=$1}}/^  Ccy/{print s's=""}' inputfile > outputfile
+    awk '{a=a?$1" "a:$1}/^   Ccy/{print a;a=""}' inputfile > outputfile
+    awk '{if(a){a=$1" "a} else{a=$1}}/^  Ccy/{print a;a=""}' inputfile > outputfile
     
-上面两句意思一样，判断变量是否为非空，非空就执行a=$1" "a, 空就执行a=$1, 如此形成倒序输出。一般第一次a肯定是空的，就把第一行的第一个字段内容写入a，后面a就不空了，就执行a=$1" "a，遇到Ccy就结束，输出a；a赋值为空。
+上面两句意思一样，判断变量是否为非空，非空就执行a=$1" "a, 空就执行a=$1, 如此形成倒序输出。一般第一次a肯定是空的，就把第一行的第一个字段内容写入a，后面a就不空了，就执行a=$1" "a，遇到Ccy就结束，输出a,  然后a赋值为空。
 
 
 #### 关联查询，类似sql关联查询输出
