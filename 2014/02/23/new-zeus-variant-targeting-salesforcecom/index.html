@@ -1,0 +1,596 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/16x16.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。 adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司">
+<meta name="keywords" content="IT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zeus木马新变种感染SaaS厂商Salesforce.com">
+<meta property="og:url" content="https://zhukite.github.io/2014/02/23/new-zeus-variant-targeting-salesforcecom/index.html">
+<meta property="og:site_name" content="pseudo traveller">
+<meta property="og:description" content="Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。 adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-05-08T10:35:25.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeus木马新变种感染SaaS厂商Salesforce.com">
+<meta name="twitter:description" content="Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。 adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhukite.github.io/2014/02/23/new-zeus-variant-targeting-salesforcecom/"/>
+
+
+
+
+
+  <title> Zeus木马新变种感染SaaS厂商Salesforce.com | pseudo traveller </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000257069'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1000257069%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pseudo traveller</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zhukite.github.io/2014/02/23/new-zeus-variant-targeting-salesforcecom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhukite">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pseudo traveller">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Zeus木马新变种感染SaaS厂商Salesforce.com
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-02-23T21:43:59+00:00">
+                2014-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。"><a href="#Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。" class="headerlink" title="Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。"></a>Zeus木马以往是攻击银行网站（你懂的，钱嘛），现在第一次针对SaaS（软件即服务）的应用进行攻击，其中最早开启SaaS模式的厂商salesforce的一名雇员的家庭电脑近日受到新变种的zeus木马感染。攻击的手法也很有巧妙，绕过避开了公司的安全监控，在该雇员的家庭电脑实施感染攻击。</h3><p><br></p>
+<h3 id="adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司的资源信息，攻击者现在绕过传统的安全防范措施，等待感染者连接公司-my-salesforce-com，通过这个被感染的用户的设备来盗取公司数据。这次zeus攻击是利用了一旦用户已经通过身份验证，便合理地建立终端用户和salesforce-com的互相信任关系这个条件。This-is-not-an-exploit-of-a-Salesforce-com-vulnerability（所以说为条件，不是漏洞）。"><a href="#adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司的资源信息，攻击者现在绕过传统的安全防范措施，等待感染者连接公司-my-salesforce-com，通过这个被感染的用户的设备来盗取公司数据。这次zeus攻击是利用了一旦用户已经通过身份验证，便合理地建立终端用户和salesforce-com的互相信任关系这个条件。This-is-not-an-exploit-of-a-Salesforce-com-vulnerability（所以说为条件，不是漏洞）。" class="headerlink" title="adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司的资源信息，攻击者现在绕过传统的安全防范措施，等待感染者连接公司*.my.salesforce.com，通过这个被感染的用户的设备来盗取公司数据。这次zeus攻击是利用了一旦用户已经通过身份验证，便合理地建立终端用户和salesforce.com的互相信任关系这个条件。This is not an exploit of a Salesforce.com vulnerability（所以说为条件，不是漏洞）。"></a>adollom实验团队称这攻击方式是下地雷，当攻击者埋下“地雷”在这位公司雇员的不受公司控制的个人设备里来获取公司的资源信息，攻击者现在绕过传统的安全防范措施，等待感染者连接公司*.my.salesforce.com，通过这个被感染的用户的设备来盗取公司数据。这次zeus攻击是利用了一旦用户已经通过身份验证，便合理地建立终端用户和salesforce.com的互相信任关系这个条件。This is not an exploit of a Salesforce.com vulnerability（所以说为条件，不是漏洞）。</h3><a id="more"></a>
+<p><br></p>
+<h3 id="事件发生过程：在一个短周期时间内，单个用户执行数百视图操作这么个不寻常的行为被检测到，"><a href="#事件发生过程：在一个短周期时间内，单个用户执行数百视图操作这么个不寻常的行为被检测到，" class="headerlink" title="事件发生过程：在一个短周期时间内，单个用户执行数百视图操作这么个不寻常的行为被检测到，"></a>事件发生过程：在一个短周期时间内，单个用户执行数百视图操作这么个不寻常的行为被检测到，</h3><p><br></p>
+<h3 id="分析：审计日志的快速分析表明-主要是使用的设备在周末和晚上和是一个Windows-XP机器运行一个旧版本的IE。长话短说-这是员工的个人拥有电脑-他们不时被使用-周末和晚上加班-补上工作。"><a href="#分析：审计日志的快速分析表明-主要是使用的设备在周末和晚上和是一个Windows-XP机器运行一个旧版本的IE。长话短说-这是员工的个人拥有电脑-他们不时被使用-周末和晚上加班-补上工作。" class="headerlink" title="分析：审计日志的快速分析表明,主要是使用的设备在周末和晚上和是一个Windows XP机器运行一个旧版本的IE。长话短说:这是员工的个人拥有电脑,他们不时被使用(周末和晚上加班)补上工作。"></a>分析：审计日志的快速分析表明,主要是使用的设备在周末和晚上和是一个Windows XP机器运行一个旧版本的IE。长话短说:这是员工的个人拥有电脑,他们不时被使用(周末和晚上加班)补上工作。</h3><h3 id="进一步的调查揭示了缺失的一个环节——这宙斯变种被配置为检测Salesforce-com经过身份验证的会话-my-salesforce-com-而不是银行网站。"><a href="#进一步的调查揭示了缺失的一个环节——这宙斯变种被配置为检测Salesforce-com经过身份验证的会话-my-salesforce-com-而不是银行网站。" class="headerlink" title="　进一步的调查揭示了缺失的一个环节——这宙斯变种被配置为检测Salesforce.com经过身份验证的会话(* .my.salesforce.com)而不是银行网站。"></a>　进一步的调查揭示了缺失的一个环节——这宙斯变种被配置为检测Salesforce.com经过身份验证的会话(* .my.salesforce.com)而不是银行网站。</h3><h3 id="本次攻击原因的调查还在进行中，。。。。。"><a href="#本次攻击原因的调查还在进行中，。。。。。" class="headerlink" title="本次攻击原因的调查还在进行中，。。。。。"></a>本次攻击原因的调查还在进行中，。。。。。</h3><p><br></p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p> 1.这次袭击的目标是一个电脑公司控制之外(在本例中,它是一个家庭的电脑）。</p>
+<p> 2.SaaS的世界里,有三个主要的参与者:SaaS供应商提供服务,公司购买服务和终端用户使用它。SaaS供应商安全收到大量的关注,大多数企业SaaS提供商,比如Salesforce.com,与先进的网络安全控制高度安全的组织。但SaaS用户和使用的安全性很大程度上落在了下面的客户共同责任模型。意料之中的是,用户是最薄弱的一环。他们访问公司资源以外的范围,可以很容易地利用。虽然有些人可能认为最简单的解决方案是简单地禁止使用SaaS,大多数SaaS应用程序默认是允许任何地方/任何设备访问没有标准化的用户活动监控和异常行为检测。</p>
+<p><br></p>
+<h3 id="银行系统保证用户安全上给出来一些参考，毕竟他是最早受到zeus攻击，原则是：假设所有PC会受到感染。。SaaS提供商必须假定用户设备受损和部署相关的安全控制以及更好的检测和预防能力。关键要普及用户IT安全意识，升级操作系统。"><a href="#银行系统保证用户安全上给出来一些参考，毕竟他是最早受到zeus攻击，原则是：假设所有PC会受到感染。。SaaS提供商必须假定用户设备受损和部署相关的安全控制以及更好的检测和预防能力。关键要普及用户IT安全意识，升级操作系统。" class="headerlink" title="银行系统保证用户安全上给出来一些参考，毕竟他是最早受到zeus攻击，原则是：假设所有PC会受到感染。。SaaS提供商必须假定用户设备受损和部署相关的安全控制以及更好的检测和预防能力。关键要普及用户IT安全意识，升级操作系统。"></a>银行系统保证用户安全上给出来一些参考，毕竟他是最早受到zeus攻击，原则是：假设所有PC会受到感染。。SaaS提供商必须假定用户设备受损和部署相关的安全控制以及更好的检测和预防能力。关键要普及用户IT安全意识，升级操作系统。</h3><p>Reference参考：<br><br><br>1、<a href="http://www.adallom.com/blog/a-new-zeus-variant-targeting-salesforce-com-accounts-research-and-analysis/" target="_blank">A new Zeus variant targeting Salesforce.com – Research and Analysis</a></p>
+<p>2、<a href="http://krebsonsecurity.com/2012/07/eu-to-banks-assume-all-pcs-are-infected/" target="_blank">EU to Banks: Assume All PCs Are Infected</a></p>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IT/" rel="tag"># IT</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/02/21/ssl_tsl-protocol/" rel="next" title="ssl_tsl protocol">
+                <i class="fa fa-chevron-left"></i> ssl_tsl protocol
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/04/24/cycle-hainan-island/" rel="prev" title="环海南岛海岸线考察日志(cycle Hainan Island)">
+                环海南岛海岸线考察日志(cycle Hainan Island) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhukite</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

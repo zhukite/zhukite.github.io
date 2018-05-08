@@ -1,0 +1,602 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT,ubuntu," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/16x16.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。">
+<meta name="keywords" content="IT,ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Ubuntu环境安装配置GoAgent">
+<meta property="og:url" content="https://zhukite.github.io/2014/07/17/install-and-configure-goagent-at-ubuntu/index.html">
+<meta property="og:site_name" content="pseudo traveller">
+<meta property="og:description" content="离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ww2.sinaimg.cn/mw1024/67804861tw1eif61dkr9aj20i10bkjta.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw1024/67804861tw1eif61dzuqwj20go04pgmb.jpg">
+<meta property="og:updated_time" content="2018-05-08T10:35:25.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Ubuntu环境安装配置GoAgent">
+<meta name="twitter:description" content="离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/mw1024/67804861tw1eif61dkr9aj20i10bkjta.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhukite.github.io/2014/07/17/install-and-configure-goagent-at-ubuntu/"/>
+
+
+
+
+
+  <title> 在Ubuntu环境安装配置GoAgent | pseudo traveller </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000257069'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1000257069%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pseudo traveller</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zhukite.github.io/2014/07/17/install-and-configure-goagent-at-ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhukite">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pseudo traveller">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在Ubuntu环境安装配置GoAgent
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-17T04:44:05+00:00">
+                2014-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。"><a href="#离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。" class="headerlink" title="离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。"></a>离开校园网ipv6这么好的教育网之后，google和github都不能访问，需要翻墙，由于本人的博客之前搭建在ubuntu环境下，更新博客内容都要git。如github在外面普通AD下几乎是不能访问，所以goAgent来翻墙完成git的任务。</h3><a id="more"></a>
+<h3 id="因为之前在windows下用过goagent翻墙，所以已经注册过google-application-ID-如果没有的话就去注册一个，用个人的gmail邮箱，来完成，按照流程一步步点就行-具体流程参考。不过现在大陆这边的AD连google都访问不了，除非是教育网ipv6才可访问google，或者你用人家的机子翻墙注册。"><a href="#因为之前在windows下用过goagent翻墙，所以已经注册过google-application-ID-如果没有的话就去注册一个，用个人的gmail邮箱，来完成，按照流程一步步点就行-具体流程参考。不过现在大陆这边的AD连google都访问不了，除非是教育网ipv6才可访问google，或者你用人家的机子翻墙注册。" class="headerlink" title="因为之前在windows下用过goagent翻墙，所以已经注册过google application ID,如果没有的话就去注册一个，用个人的gmail邮箱，来完成，按照流程一步步点就行,具体流程参考。不过现在大陆这边的AD连google都访问不了，除非是教育网ipv6才可访问google，或者你用人家的机子翻墙注册。"></a>因为之前在windows下用过goagent翻墙，所以已经注册过google application ID,如果没有的话就去注册一个，用个人的gmail邮箱，来完成，按照流程一步步点就行,<a href="https://www.x-berry.com/goagent/" target="_blank">具体流程参考</a>。不过现在大陆这边的AD连google都访问不了，除非是教育网ipv6才可访问google，或者你用人家的机子翻墙注册。</h3><p><br></p>
+<h3 id="记住自己的google-application-ID-Gmail，-Gmail的password，之后有用。下载goagent，然后解压，之后打开local文件夹"><a href="#记住自己的google-application-ID-Gmail，-Gmail的password，之后有用。下载goagent，然后解压，之后打开local文件夹" class="headerlink" title="记住自己的google application ID, Gmail， Gmail的password，之后有用。下载goagent，然后解压，之后打开local文件夹"></a>记住自己的google application ID, Gmail， Gmail的password，之后有用。下载goagent，然后解压，之后打开local文件夹</h3><pre><code>$cd local
+</code></pre><h3 id="ls-al-就看到有个proxy-ini的文件，编辑他："><a href="#ls-al-就看到有个proxy-ini的文件，编辑他：" class="headerlink" title="ls -al 就看到有个proxy.ini的文件，编辑他："></a>ls -al 就看到有个proxy.ini的文件，编辑他：</h3><pre><code>$gedit proxy.ini 
+</code></pre><h3 id="改［gae］里面的appid变为你刚才在google注册的-application-ID。"><a href="#改［gae］里面的appid变为你刚才在google注册的-application-ID。" class="headerlink" title="改［gae］里面的appid变为你刚才在google注册的 application  ID。"></a>改［gae］里面的appid变为你刚才在google注册的 application  ID。</h3><h3 id="然后返回goagent的目录，打开server，"><a href="#然后返回goagent的目录，打开server，" class="headerlink" title="然后返回goagent的目录，打开server，"></a>然后返回goagent的目录，打开server，</h3><pre><code>$cd server &amp; python uploader.zip
+</code></pre><h3 id="完成python服务器端上传，便会看到一个头部信息，会显示你刚输入的app-id信息等，其实就是proxy-ini中的-gae-信息。之后会提示你输入Gmail-和-your-Gmail-password"><a href="#完成python服务器端上传，便会看到一个头部信息，会显示你刚输入的app-id信息等，其实就是proxy-ini中的-gae-信息。之后会提示你输入Gmail-和-your-Gmail-password" class="headerlink" title="完成python服务器端上传，便会看到一个头部信息，会显示你刚输入的app_id信息等，其实就是proxy.ini中的[gae]信息。之后会提示你输入Gmail 和 your Gmail password."></a>完成python服务器端上传，便会看到一个头部信息，会显示你刚输入的app_id信息等，其实就是proxy.ini中的[gae]信息。之后会提示你输入Gmail 和 your Gmail password.</h3><p><br><br> <img src="http://ww2.sinaimg.cn/mw1024/67804861tw1eif61dkr9aj20i10bkjta.jpg" width="700"><br><br><br><br></p>
+<h1 id="布置完成！！！"><a href="#布置完成！！！" class="headerlink" title="布置完成！！！"></a>布置完成！！！</h1><h3 id="现在翻墙git，-打开local文件夹-输入命令："><a href="#现在翻墙git，-打开local文件夹-输入命令：" class="headerlink" title="现在翻墙git， 打开local文件夹,输入命令："></a>现在翻墙git， 打开local文件夹,输入命令：</h3><pre><code>$ python proxy.py
+</code></pre><p><br><br> <img src="http://ww1.sinaimg.cn/mw1024/67804861tw1eif61dzuqwj20go04pgmb.jpg" width="700"><br><br><br><br></p>
+<h3 id="因为github是使用https协议，对于goagent来说，需要先将安装证书，在Linux下，直接增加到-etc-ssl-certs-ca-certificates-crt-。。如："><a href="#因为github是使用https协议，对于goagent来说，需要先将安装证书，在Linux下，直接增加到-etc-ssl-certs-ca-certificates-crt-。。如：" class="headerlink" title="因为github是使用https协议，对于goagent来说，需要先将安装证书，在Linux下，直接增加到   /etc/ssl/certs/ca-certificates.crt  。。如："></a>因为github是使用https协议，对于goagent来说，需要先将安装证书，在Linux下，直接增加到   /etc/ssl/certs/ca-certificates.crt  。。如：</h3><pre><code># cat CA.crt &gt;&gt; /etc/ssl/certs/ca-certificates.crt
+</code></pre><h3 id="即可"><a href="#即可" class="headerlink" title="即可."></a>即可.</h3><h3 id="然后完成各种git命令"><a href="#然后完成各种git命令" class="headerlink" title="然后完成各种git命令:"></a>然后完成各种git命令:</h3><pre><code>$ https_proxy=127.0.0.1:8087 git .....
+</code></pre><p><br><br>Reference:<a href="https://www.evernote.com/shard/s44/sh/c1082cf7-0afc-4bd2-a066-e3c8108c0c4a/dade7194e0d74ce1183d13641e72fd4c" target="_blank">goagent 翻墙使用 github 进行git clone</a></p>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IT/" rel="tag"># IT</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/07/14/play-google-xss-game/" rel="next" title="play google XSS game">
+                <i class="fa fa-chevron-left"></i> play google XSS game
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/24/use-nikola-to-build-a-blog-at-ubuntu-and-mount-on-gitpage/" rel="prev" title="use nikola to build a blog at ubuntu and mount on gitpage">
+                use nikola to build a blog at ubuntu and mount on gitpage <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhukite</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

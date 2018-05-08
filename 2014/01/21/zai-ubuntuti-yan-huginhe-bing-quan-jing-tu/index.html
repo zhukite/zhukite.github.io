@@ -1,0 +1,596 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT,ubuntu," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/16x16.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在ubuntu安装hugin，$ sudo apt-get install hugin 启动 Huginhugin 测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。 合并成为180度全景照  Reference:英语版via：How to stitch photos together on Linux中文版via">
+<meta name="keywords" content="IT,ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在ubuntu体验Hugin合并全景图">
+<meta property="og:url" content="https://zhukite.github.io/2014/01/21/zai-ubuntuti-yan-huginhe-bing-quan-jing-tu/index.html">
+<meta property="og:site_name" content="pseudo traveller">
+<meta property="og:description" content="在ubuntu安装hugin，$ sudo apt-get install hugin 启动 Huginhugin 测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。 合并成为180度全景照  Reference:英语版via：How to stitch photos together on Linux中文版via">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw1024/67804861gw1ecqisnl15tj21kw0ci0xs.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw1024/67804861gw1ecqismygrej21kw0ci77y.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/67804861gw1ecqiv4q8fjj21kw07aq5z.jpg">
+<meta property="og:updated_time" content="2018-05-08T10:35:25.484Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在ubuntu体验Hugin合并全景图">
+<meta name="twitter:description" content="在ubuntu安装hugin，$ sudo apt-get install hugin 启动 Huginhugin 测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。 合并成为180度全景照  Reference:英语版via：How to stitch photos together on Linux中文版via">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/mw1024/67804861gw1ecqisnl15tj21kw0ci0xs.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhukite.github.io/2014/01/21/zai-ubuntuti-yan-huginhe-bing-quan-jing-tu/"/>
+
+
+
+
+
+  <title> 在ubuntu体验Hugin合并全景图 | pseudo traveller </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000257069'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1000257069%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pseudo traveller</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zhukite.github.io/2014/01/21/zai-ubuntuti-yan-huginhe-bing-quan-jing-tu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhukite">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pseudo traveller">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在ubuntu体验Hugin合并全景图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-01-21T06:58:04+00:00">
+                2014-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="在ubuntu安装hugin，"><a href="#在ubuntu安装hugin，" class="headerlink" title="在ubuntu安装hugin，"></a>在ubuntu安装hugin，</h3><pre><code>$ sudo apt-get install hugin
+</code></pre><h3 id="启动-Hugin"><a href="#启动-Hugin" class="headerlink" title="启动 Hugin"></a>启动 Hugin</h3><pre><code>hugin
+</code></pre><h3 id="测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。"><a href="#测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。" class="headerlink" title="测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。"></a>测试了两张图片，当时骑上帕米尔高原时拍下的昆仑山脉，分别拿西昆仑里面著名的两座山峰————公格尔九别峰和“冰山之父”之称的慕士塔格峰。</h3><p><img src="http://ww4.sinaimg.cn/mw1024/67804861gw1ecqisnl15tj21kw0ci0xs.jpg" width="700"><br><br><br><br><img src="http://ww4.sinaimg.cn/mw1024/67804861gw1ecqismygrej21kw0ci77y.jpg" width="700"><br><br><br></p>
+<h3 id="合并成为180度全景照"><a href="#合并成为180度全景照" class="headerlink" title="合并成为180度全景照"></a>合并成为180度全景照</h3><p><img src="http://ww3.sinaimg.cn/large/67804861gw1ecqiv4q8fjj21kw07aq5z.jpg" width="700"><br><br><br></p>
+<hr>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><h3 id="英语版via：How-to-stitch-photos-together-on-Linux"><a href="#英语版via：How-to-stitch-photos-together-on-Linux" class="headerlink" title="英语版via：How to stitch photos together on Linux"></a>英语版via：<a href="http://xmodulo.com/2013/12/stitch-photos-together-linux.html" target="_blank">How to stitch photos together on Linux</a></h3><h3 id="中文版via：如何在-Linux-中生成全景照片"><a href="#中文版via：如何在-Linux-中生成全景照片" class="headerlink" title="中文版via：如何在 Linux 中生成全景照片"></a>中文版via：<a href="http://linux.cn/thread/12210/1/1/" target="_blank">如何在 Linux 中生成全景照片</a></h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IT/" rel="tag"># IT</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/01/21/dian-xi-bei-huan-xian/" rel="next" title="滇西北回忆">
+                <i class="fa fa-chevron-left"></i> 滇西北回忆
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/01/23/cang-nan-ming-zhu-cheng-zhen-tou-chu-you-lan-de-guang-mang/" rel="prev" title="藏南明珠城镇---透出幽蓝的光芒">
+                藏南明珠城镇---透出幽蓝的光芒 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhukite</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

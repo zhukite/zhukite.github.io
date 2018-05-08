@@ -1,0 +1,602 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/16x16.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="验证码的原名为CAPTCHA，是一大串英文的缩写：Completely Automated Public Turing test to tell Computers and Humans Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了">
+<meta name="keywords" content="IT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAPTCHA and Turing(验证码与图灵)">
+<meta property="og:url" content="https://zhukite.github.io/2014/04/29/captcha-and-turing/index.html">
+<meta property="og:site_name" content="pseudo traveller">
+<meta property="og:description" content="验证码的原名为CAPTCHA，是一大串英文的缩写：Completely Automated Public Turing test to tell Computers and Humans Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://pansci.tw/wp-content/uploads/2014/04/Captcha.jpg">
+<meta property="og:updated_time" content="2018-05-08T10:35:25.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CAPTCHA and Turing(验证码与图灵)">
+<meta name="twitter:description" content="验证码的原名为CAPTCHA，是一大串英文的缩写：Completely Automated Public Turing test to tell Computers and Humans Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了">
+<meta name="twitter:image" content="http://pansci.tw/wp-content/uploads/2014/04/Captcha.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhukite.github.io/2014/04/29/captcha-and-turing/"/>
+
+
+
+
+
+  <title> CAPTCHA and Turing(验证码与图灵) | pseudo traveller </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000257069'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1000257069%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pseudo traveller</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://zhukite.github.io/2014/04/29/captcha-and-turing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhukite">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pseudo traveller">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CAPTCHA and Turing(验证码与图灵)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-04-29T03:03:34+00:00">
+                2014-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="验证码的原名为CAPTCHA，是一大串英文的缩写：Completely-Automated-Public-Turing-test-to-tell-Computers-and-Humans-Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了，网站设计者必须使用算数、照片辨识、两种以上的混合扭曲字元等等验证码，才能稍稍抵挡可能的恶意攻击。"><a href="#验证码的原名为CAPTCHA，是一大串英文的缩写：Completely-Automated-Public-Turing-test-to-tell-Computers-and-Humans-Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了，网站设计者必须使用算数、照片辨识、两种以上的混合扭曲字元等等验证码，才能稍稍抵挡可能的恶意攻击。" class="headerlink" title="验证码的原名为CAPTCHA，是一大串英文的缩写：Completely Automated Public Turing test to tell Computers and Humans Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了，网站设计者必须使用算数、照片辨识、两种以上的混合扭曲字元等等验证码，才能稍稍抵挡可能的恶意攻击。"></a>验证码的原名为CAPTCHA，是一大串英文的缩写：Completely Automated Public Turing test to tell Computers and Humans Apart，全自动区分电脑和人类的图灵测试。它的目的在于区分人眼与电脑程式，产生只有人类才能辨别的文字，以避免恶意程式攻击或垃圾留言。然而程式设计者的技能日新月异，现在的验证码也得五花八门，扭曲的文字已经不够用了，网站设计者必须使用算数、照片辨识、两种以上的混合扭曲字元等等验证码，才能稍稍抵挡可能的恶意攻击。</h3><p><br><br> <img src="http://pansci.tw/wp-content/uploads/2014/04/Captcha.jpg"><br><a id="more"></a><br><br><br><br></p>
+<h3 id="虽然越来越扭曲难辨的验证码使人恼怒。但反过来说，这也代表着电脑程式与人类的视觉辨别能力越来越难舍难分、人工智能的进展一日千里。如前所述，验证码目的在于区分出人类与自动程式的差异，是一种图灵测试-Turing-test-。更正确地说，验证码是一种反向图灵测试-reverse-Turing-test-。反过来推测便可猜出，原本的图灵测试-Turing-test-，是要辨别电脑程式有多接近人类行为。这个测试在人工智能的发展过程中，扮演着举足轻重的角色。而这个测试的发明人艾伦‧图灵-Alan-Turing-，更是一个划时代的科学家。"><a href="#虽然越来越扭曲难辨的验证码使人恼怒。但反过来说，这也代表着电脑程式与人类的视觉辨别能力越来越难舍难分、人工智能的进展一日千里。如前所述，验证码目的在于区分出人类与自动程式的差异，是一种图灵测试-Turing-test-。更正确地说，验证码是一种反向图灵测试-reverse-Turing-test-。反过来推测便可猜出，原本的图灵测试-Turing-test-，是要辨别电脑程式有多接近人类行为。这个测试在人工智能的发展过程中，扮演着举足轻重的角色。而这个测试的发明人艾伦‧图灵-Alan-Turing-，更是一个划时代的科学家。" class="headerlink" title="虽然越来越扭曲难辨的验证码使人恼怒。但反过来说，这也代表着电脑程式与人类的视觉辨别能力越来越难舍难分、人工智能的进展一日千里。如前所述，验证码目的在于区分出人类与自动程式的差异，是一种图灵测试(Turing test)。更正确地说，验证码是一种反向图灵测试(reverse Turing test)。反过来推测便可猜出，原本的图灵测试(Turing test)，是要辨别电脑程式有多接近人类行为。这个测试在人工智能的发展过程中，扮演着举足轻重的角色。而这个测试的发明人艾伦‧图灵(Alan Turing)，更是一个划时代的科学家。"></a>虽然越来越扭曲难辨的验证码使人恼怒。但反过来说，这也代表着电脑程式与人类的视觉辨别能力越来越难舍难分、人工智能的进展一日千里。如前所述，验证码目的在于区分出人类与自动程式的差异，是一种图灵测试(Turing test)。更正确地说，验证码是一种反向图灵测试(reverse Turing test)。反过来推测便可猜出，原本的图灵测试(Turing test)，是要辨别电脑程式有多接近人类行为。这个测试在人工智能的发展过程中，扮演着举足轻重的角色。而这个测试的发明人艾伦‧图灵(Alan Turing)，更是一个划时代的科学家。</h3><p><br></p>
+<h3 id="关于人工智慧该如何定义、机器是否能获得思考能力，是一个长期未解的哲学争论。图灵在1950年提出的一个简单定义：「若电脑能够展现出一连串的行为，令人类观察者无法分辨电脑与人类的区别，那么这个机器就应该被视为是能有智能的。」而去测试电脑与人类的区别，就是图灵测试。当然人工智能的终极意义，仍待学者们争论厘清，但图灵提出这个简单的定义，为后续许多人工智能研究打下一个深厚的基础。"><a href="#关于人工智慧该如何定义、机器是否能获得思考能力，是一个长期未解的哲学争论。图灵在1950年提出的一个简单定义：「若电脑能够展现出一连串的行为，令人类观察者无法分辨电脑与人类的区别，那么这个机器就应该被视为是能有智能的。」而去测试电脑与人类的区别，就是图灵测试。当然人工智能的终极意义，仍待学者们争论厘清，但图灵提出这个简单的定义，为后续许多人工智能研究打下一个深厚的基础。" class="headerlink" title="关于人工智慧该如何定义、机器是否能获得思考能力，是一个长期未解的哲学争论。图灵在1950年提出的一个简单定义：「若电脑能够展现出一连串的行为，令人类观察者无法分辨电脑与人类的区别，那么这个机器就应该被视为是能有智能的。」而去测试电脑与人类的区别，就是图灵测试。当然人工智能的终极意义，仍待学者们争论厘清，但图灵提出这个简单的定义，为后续许多人工智能研究打下一个深厚的基础。"></a>关于人工智慧该如何定义、机器是否能获得思考能力，是一个长期未解的哲学争论。图灵在1950年提出的一个简单定义：「若电脑能够展现出一连串的行为，令人类观察者无法分辨电脑与人类的区别，那么这个机器就应该被视为是能有智能的。」而去测试电脑与人类的区别，就是图灵测试。当然人工智能的终极意义，仍待学者们争论厘清，但图灵提出这个简单的定义，为后续许多人工智能研究打下一个深厚的基础。</h3><p><br></p>
+<h3 id="这个概念最常见的应用，就是Siri。若是以一般的搜寻功能，Siri的表现已经如同一般的秘书，除了公事公办、甚至还能跟你聊上两句。满多人应该也都有过跟电脑程式聊天的经验，现在风行的手机应用程式LINE也推出有聊天机器人，大家跟机器人聊天的时候，喜欢喂一些奇怪问句，看机器人左右支绌的样子，也不失为一种休闲乐趣。其实这就是图灵测试的实践，而且经过网友们发挥科学精神、千奇百怪的测试后，可以很确定这些程式还没有通过图灵测试，尚未达到顺畅对谈的人工智能功能。"><a href="#这个概念最常见的应用，就是Siri。若是以一般的搜寻功能，Siri的表现已经如同一般的秘书，除了公事公办、甚至还能跟你聊上两句。满多人应该也都有过跟电脑程式聊天的经验，现在风行的手机应用程式LINE也推出有聊天机器人，大家跟机器人聊天的时候，喜欢喂一些奇怪问句，看机器人左右支绌的样子，也不失为一种休闲乐趣。其实这就是图灵测试的实践，而且经过网友们发挥科学精神、千奇百怪的测试后，可以很确定这些程式还没有通过图灵测试，尚未达到顺畅对谈的人工智能功能。" class="headerlink" title="这个概念最常见的应用，就是Siri。若是以一般的搜寻功能，Siri的表现已经如同一般的秘书，除了公事公办、甚至还能跟你聊上两句。满多人应该也都有过跟电脑程式聊天的经验，现在风行的手机应用程式LINE也推出有聊天机器人，大家跟机器人聊天的时候，喜欢喂一些奇怪问句，看机器人左右支绌的样子，也不失为一种休闲乐趣。其实这就是图灵测试的实践，而且经过网友们发挥科学精神、千奇百怪的测试后，可以很确定这些程式还没有通过图灵测试，尚未达到顺畅对谈的人工智能功能。"></a>这个概念最常见的应用，就是Siri。若是以一般的搜寻功能，Siri的表现已经如同一般的秘书，除了公事公办、甚至还能跟你聊上两句。满多人应该也都有过跟电脑程式聊天的经验，现在风行的手机应用程式LINE也推出有聊天机器人，大家跟机器人聊天的时候，喜欢喂一些奇怪问句，看机器人左右支绌的样子，也不失为一种休闲乐趣。其实这就是图灵测试的实践，而且经过网友们发挥科学精神、千奇百怪的测试后，可以很确定这些程式还没有通过图灵测试，尚未达到顺畅对谈的人工智能功能。</h3><p><br></p>
+<h3 id="图灵除了提出这个重要的概念，还是一个很重要的数学家、哲学家、更被尊称为电脑科学之父。他还曾经协助英军破解德军的密码系统，改变了二战的战争局势。然而他的死亡，到如今仍是科学史上的一段黑暗历史。"><a href="#图灵除了提出这个重要的概念，还是一个很重要的数学家、哲学家、更被尊称为电脑科学之父。他还曾经协助英军破解德军的密码系统，改变了二战的战争局势。然而他的死亡，到如今仍是科学史上的一段黑暗历史。" class="headerlink" title="图灵除了提出这个重要的概念，还是一个很重要的数学家、哲学家、更被尊称为电脑科学之父。他还曾经协助英军破解德军的密码系统，改变了二战的战争局势。然而他的死亡，到如今仍是科学史上的一段黑暗历史。"></a>图灵除了提出这个重要的概念，还是一个很重要的数学家、哲学家、更被尊称为电脑科学之父。他还曾经协助英军破解德军的密码系统，改变了二战的战争局势。然而他的死亡，到如今仍是科学史上的一段黑暗历史。</h3><p><br></p>
+<h3 id="1952年，在图灵39岁时，他因本身的同性恋倾向，遭受英国政府判决化学阉割之刑，强力施打女性激素。在贺尔蒙失调、思绪紊乱、性征错乱的状况下，他在一年多后选择服毒自杀，提早离开人间，也因此留下了一段科学界的黑历史。使用侵害人权方式的对待一个抗战有功的科学家，也对英国政府的形象蒙上一层阴影。在许多人不屈不饶的抗议与请愿下、在这个判决已经过了整整一甲子之后，英国女王终于在去年的耶诞夜发表官方对图灵的正式致歉。"><a href="#1952年，在图灵39岁时，他因本身的同性恋倾向，遭受英国政府判决化学阉割之刑，强力施打女性激素。在贺尔蒙失调、思绪紊乱、性征错乱的状况下，他在一年多后选择服毒自杀，提早离开人间，也因此留下了一段科学界的黑历史。使用侵害人权方式的对待一个抗战有功的科学家，也对英国政府的形象蒙上一层阴影。在许多人不屈不饶的抗议与请愿下、在这个判决已经过了整整一甲子之后，英国女王终于在去年的耶诞夜发表官方对图灵的正式致歉。" class="headerlink" title="1952年，在图灵39岁时，他因本身的同性恋倾向，遭受英国政府判决化学阉割之刑，强力施打女性激素。在贺尔蒙失调、思绪紊乱、性征错乱的状况下，他在一年多后选择服毒自杀，提早离开人间，也因此留下了一段科学界的黑历史。使用侵害人权方式的对待一个抗战有功的科学家，也对英国政府的形象蒙上一层阴影。在许多人不屈不饶的抗议与请愿下、在这个判决已经过了整整一甲子之后，英国女王终于在去年的耶诞夜发表官方对图灵的正式致歉。"></a>1952年，在图灵39岁时，他因本身的同性恋倾向，遭受英国政府判决化学阉割之刑，强力施打女性激素。在贺尔蒙失调、思绪紊乱、性征错乱的状况下，他在一年多后选择服毒自杀，提早离开人间，也因此留下了一段科学界的黑历史。使用侵害人权方式的对待一个抗战有功的科学家，也对英国政府的形象蒙上一层阴影。在许多人不屈不饶的抗议与请愿下、在这个判决已经过了整整一甲子之后，英国女王终于在去年的耶诞夜发表官方对图灵的正式致歉。</h3><p><br></p>
+<h3 id="今年，2014年，正是图灵逝世60周年，许多科学社群都默默地对这位划时代的悲剧科学家表达追思之情。英国的电影公司也即将推出一部以图灵为主角的电影，片名为模仿游戏-The-Imitation-Game，暂译-，由当红的电影明星Benedict-Cumberbatch-曾饰演英国广播公司自制电视剧Sherlock-福尔摩斯一角-来诠释图灵，目前已经完成拍摄、进入后制阶段，令全球科学迷与影迷引颈期待。"><a href="#今年，2014年，正是图灵逝世60周年，许多科学社群都默默地对这位划时代的悲剧科学家表达追思之情。英国的电影公司也即将推出一部以图灵为主角的电影，片名为模仿游戏-The-Imitation-Game，暂译-，由当红的电影明星Benedict-Cumberbatch-曾饰演英国广播公司自制电视剧Sherlock-福尔摩斯一角-来诠释图灵，目前已经完成拍摄、进入后制阶段，令全球科学迷与影迷引颈期待。" class="headerlink" title="今年，2014年，正是图灵逝世60周年，许多科学社群都默默地对这位划时代的悲剧科学家表达追思之情。英国的电影公司也即将推出一部以图灵为主角的电影，片名为模仿游戏(The Imitation Game，暂译)，由当红的电影明星Benedict Cumberbatch(曾饰演英国广播公司自制电视剧Sherlock 福尔摩斯一角)来诠释图灵，目前已经完成拍摄、进入后制阶段，令全球科学迷与影迷引颈期待。"></a>今年，2014年，正是图灵逝世60周年，许多科学社群都默默地对这位划时代的悲剧科学家表达追思之情。英国的电影公司也即将推出一部以图灵为主角的电影，片名为模仿游戏(The Imitation Game，暂译)，由当红的电影明星Benedict Cumberbatch(曾饰演英国广播公司自制电视剧Sherlock 福尔摩斯一角)来诠释图灵，目前已经完成拍摄、进入后制阶段，令全球科学迷与影迷引颈期待。</h3><p><br><br></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><ul>
+<li><a href="http://pansci.tw/archives/59156" target="_blank">繁体版</a></li>
+<li><a href="http://www.captcha.net/" target="_blank">验证码网站</a></li>
+<li><a href="http://www.bbc.com/news/technology-25495315" target="_blank">图灵获得英国皇室平反</a></li>
+<li><a href="http://www.appledaily.com.tw/realtimenews/article/new/20131225/314637/" target="_blank">「电脑科学之父」图灵同性恋罪获皇室赦免</a></li>
+<li><a href="http://www.imdb.com/title/tt2084970/" target="_blank">电影《The Imitation Game 》(2014)</a></li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IT/" rel="tag"># IT</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/28/Along-the-borderland/" rel="next" title="Along the borderland">
+                <i class="fa fa-chevron-left"></i> Along the borderland
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/02/hainan-island-postcript/" rel="prev" title="环岛之后记（hainan island postcript）">
+                环岛之后记（hainan island postcript） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhukite</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
