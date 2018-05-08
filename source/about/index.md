@@ -5,11 +5,6 @@ comments: false
 ---
 
 
-# I am zhuKite
-
-微博：<a href="http://weibo.com/zhukite" target="_blank">@zhukite</a><br/>
-Facebook：<a href="https://www.facebook.com/kite.zhu.3" target="_blank">zhukite</a>	
-
 ##  Origin of blog title：
 * As an IT coder interested in information security(pseudorandom generator is very common at Applied Cryptography).
   伪随机生成器常见于应用密码学
